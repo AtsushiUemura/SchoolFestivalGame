@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
 public class Enemy : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Enemy : MonoBehaviour
     {
         StartCoroutine(Move());
         StartCoroutine(ItemCreate());
+        StartCoroutine(Effect());
     }
 
     // Update is called once per frame
@@ -21,7 +23,14 @@ public class Enemy : MonoBehaviour
     {
 
     }
-
+    private IEnumerator Effect()
+    {
+        while (!isDead)
+        {
+            
+            yield return new WaitForSeconds(3);
+        }
+    }
     private IEnumerator Move()
     {
         while (!isDead)

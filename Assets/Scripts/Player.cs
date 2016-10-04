@@ -3,11 +3,8 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
-
     [SerializeField]
-    private bool tach;
-    [SerializeField]
-
+    private GameManager gameManager;
 
     // Use this for initialization
     void Start()
@@ -18,7 +15,19 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        tach = Input.GetMouseButtonDown(0);
+   
   
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Box"))
+        {
+            gameManager.time -= 5;
+        }
+        if (other.gameObject.CompareTag("Item"))
+        {
+            gameManager.score++;
+        }
     }
 }

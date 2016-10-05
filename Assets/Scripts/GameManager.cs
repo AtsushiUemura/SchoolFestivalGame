@@ -4,37 +4,21 @@ using UnityEngine.UI;
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
-    private float RestTime;
-    public float restTime
-    {
-        get
-        {
-            return RestTime;
-        }
-        set
-        {
-            restTime = RestTime;
-        }
-    }
+    private float restTime;
     private int currentScore;
-    public int CurrentScore
-    {
-        get
-        {
-            return currentScore;
-        }
-        set
-        {
-            currentScore = CurrentScore;
-        }
-    }
     [SerializeField]
     private float timeLimit;
+    [SerializeField]
+    private GameObject witch;
 
     [SerializeField]
     private Text restTimeText;
     [SerializeField]
     private Text currentScoreText;
+    [SerializeField]
+    private float gravityPower;
+    [SerializeField]
+    private GameObject[] item;
 
     #region
     void Awake()
@@ -44,12 +28,13 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             Destroy(this);
             return;
         }
-
         DontDestroyOnLoad(this.gameObject);
     }
     void Start()
     {
-        Physics.gravity = new Vector3(0, -40, 0);
+        Physics.gravity = new Vector3(0, gravityPower, 0);
+        StartCoroutine(ItemCreate());
+        StartCoroutine(CallWitch());
     }
     void Update()
     {
@@ -59,21 +44,37 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     private void Init()
     {
-        RestTime = timeLimit;
-        CurrentScore = 0;
+        restTime = timeLimit;
+        currentScore = 0;
 
     }
     public void AddScore(int score)
     {
-        CurrentScore += score;
+        currentScore += score;
     }
     public void AddTime(float time)
     {
-        RestTime += time;
+        restTime += time;
     }
     private void UpdateText()
     {
-        restTimeText.text = RestTime.ToString();
-        currentScoreText.text = CurrentScore.ToString();
-    } 
+        restTimeText.text = restTime.ToString();
+        currentScoreText.text = currentScore.ToString();
+    }
+    private IEnumerator ItemCreate()
+    {
+        while (true)
+        {
+            Instantiate(item[Random.Range(0, item.Length)], new Vector3(10, Random.Range(0, 3), 6), Quaternion.identity);
+            yield return new WaitForSeconds(Random.Range(1, 5));
+        }
+    }
+    private IEnumerator CallWitch()
+    {
+        while (true)
+        {
+            witch.SetActive(true);
+            yield return new WaitForSeconds(10);
+        }
+    }
 }

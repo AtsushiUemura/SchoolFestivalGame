@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
         while (!isDead)
         {
             GameObject clone = Instantiate(item, transform.position, Quaternion.identity) as GameObject;
-            clone.GetComponent<Rigidbody>().AddForce(new Vector2(-1, Random.Range(1, 4)) * 300);
+            clone.GetComponent<Rigidbody>().AddForce(new Vector2(-0.5f, Random.Range(1, 5)) * 300);
             yield return new WaitForSeconds(Random.Range(1, 3));
         }
     }

@@ -17,7 +17,7 @@ public class Witch : MonoBehaviour
         yield return coroutine;
         coroutine = StartCoroutine(MoveBack());
         yield return coroutine;
-        transform.localPosition = new Vector3(-15, 5, 6);
+       
     }
 
     private IEnumerator Move()
@@ -29,6 +29,7 @@ public class Witch : MonoBehaviour
     {
         transform.DOMove(new Vector3(15, 5, 6), 3);
         yield return new WaitForSeconds(3);
+        gameObject.SetActive(false);
     }
     private IEnumerator ItemCreate()
     {

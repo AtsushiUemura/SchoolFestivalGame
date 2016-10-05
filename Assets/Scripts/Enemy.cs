@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        StartCoroutine(Move());
+        StartCoroutine(Jump());
         StartCoroutine(ItemCreate());
         StartCoroutine(Effect());
     }
@@ -31,11 +31,11 @@ public class Enemy : MonoBehaviour
             yield return new WaitForSeconds(3);
         }
     }
-    private IEnumerator Move()
+    private IEnumerator Jump()
     {
         while (!isDead)
         {
-            rig.AddForce(new Vector2(0, 1) * 200);
+            rig.AddForce(new Vector2(0, 1) * 400);
             yield return new WaitForSeconds(1);
         }
     }
@@ -44,8 +44,8 @@ public class Enemy : MonoBehaviour
         while (!isDead)
         {
             GameObject clone = Instantiate(item, transform.position, Quaternion.identity) as GameObject;
-            clone.GetComponent<Rigidbody>().AddForce(new Vector2(-1, Random.Range(0, 6)) * 100);
-            yield return new WaitForSeconds(Random.Range(5, 8) * 0.1f);
+            clone.GetComponent<Rigidbody>().AddForce(new Vector2(-1, Random.Range(1, 4)) * 300);
+            yield return new WaitForSeconds(Random.Range(1, 3));
         }
     }
 

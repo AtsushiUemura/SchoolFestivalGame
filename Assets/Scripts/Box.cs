@@ -4,17 +4,6 @@ using System.Collections;
 public class Box : MonoBehaviour
 {
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     private void OnBecameInvisible()
     {
         Destroy(gameObject);
@@ -22,14 +11,10 @@ public class Box : MonoBehaviour
 
     private void OnCollisionStay(Collision other)
     {
-        if (other.gameObject.CompareTag("Load"))
+        if (other.gameObject.CompareTag("Road"))
         {
-
-            transform.localPosition += new Vector3(-1, 0, 0) * 0.08f;
+            transform.localPosition += new Vector3(-1, 0, 0) * 0.1f;
         }
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Destroy(gameObject);
-        }
+       
     }
 }

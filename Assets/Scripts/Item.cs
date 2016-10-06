@@ -1,18 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
-public class Item : MonoBehaviour {
+public class Item : MonoBehaviour
+{
     [SerializeField]
     private float speed;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         Move();
-	}
+    }
     private void OnBecameInvisible()
     {
         Destroy(gameObject);
@@ -25,7 +29,7 @@ public class Item : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            GameManager.I.AddScore(1);
+            StartCoroutine(GameManager.I.AddScore(1));
             Destroy(gameObject);
         }
     }

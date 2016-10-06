@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
-using 
+using DG.Tweening;
 
-public class Arrow : MonoBehaviour {
+public class Arrow : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    // Use this for initialization
+    void Start()
+    {
+        transform.DOLocalRotate(new Vector3(0, 0, 30), 3).SetLoops(10, LoopType.Yoyo);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+       
+    }
 }

@@ -13,8 +13,7 @@ public class Wall : MonoBehaviour
     private float posX;
     [SerializeField]
     private Vector3 pos;
-    [SerializeField]
-    private float speedUpSpan;
+
 
     void Update()
     {

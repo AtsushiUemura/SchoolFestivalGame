@@ -15,15 +15,15 @@ public class Witch : MonoBehaviour
         yield return coroutine;
         coroutine = StartCoroutine(ItemCreate());
         yield return coroutine;
-        coroutine = StartCoroutine(MoveBack());
-        yield return coroutine;
-       
+        // coroutine = StartCoroutine(MoveBack());
+        // yield return coroutine;
+
     }
 
     private IEnumerator Move()
     {
         transform.DOMove(new Vector3(2, 2, 6), 3);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(6);
     }
     private IEnumerator MoveBack()
     {
@@ -34,7 +34,7 @@ public class Witch : MonoBehaviour
     private IEnumerator ItemCreate()
     {
         int count = 0;
-        while (count < 5)
+        while (!InGameManager.IsFinished)
         {
             count++;
             Instantiate(item, transform.position, Quaternion.identity);

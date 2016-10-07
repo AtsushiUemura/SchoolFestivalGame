@@ -13,6 +13,10 @@ public class Player : MonoBehaviour
     private float speedUpRate;
     [SerializeField]
     private Animator animator;
+    [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip jump;
 
     void Start()
     {
@@ -28,8 +32,9 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (!isJumped)
+            if (!isJumped && !InGameManager.IsFinished)
             {
+                audioSource.PlayOneShot(jump);
                 isJumped = true;
                 rig.AddForce(Vector3.up * jumpPower);
                 animator.SetTrigger("Jump");
@@ -52,7 +57,19 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Box"))
         {
             isJumped = false;
-            rig.AddForce(new Vector3(-1, 0, 0) * 50);
+            rig.AddForce(new Vector3(-1, 0, 0) * 30);
+        }
+        if (other.gameObject.CompareTag("Item"))
+        {
+            if (-1.5f < transform.localPosition.x)
+            {
+                InGameManager.AddScore(2);
+            }
+            else
+            {
+                InGameManager.AddScore(1);
+            }
+
         }
     }
 

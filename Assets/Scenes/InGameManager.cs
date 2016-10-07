@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class InGameManager : MonoBehaviour
 {
@@ -13,7 +15,7 @@ public class InGameManager : MonoBehaviour
         }
         set
         {
-            isFinished = IsFinished;
+            isFinished = value;
         }
     }
     [SerializeField]
@@ -31,8 +33,26 @@ public class InGameManager : MonoBehaviour
     [SerializeField]
     private SpriteRenderer arrow;
     private static int currentScore;
+    [SerializeField]
     private int time;
-
+    [SerializeField]
+    private Text scoreText;
+    [SerializeField]
+    private Text timeText;
+    [SerializeField]
+    private GameObject item;
+    [SerializeField]
+    private Text resultText;
+    [SerializeField]
+    private GameObject result;
+    [SerializeField]
+    private AnimationCurve animationCurve;
+    [SerializeField]
+    private string sceneName;
+    [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip joy;
     #region
     IEnumerator Start()
     {
@@ -48,19 +68,87 @@ public class InGameManager : MonoBehaviour
         yield return coroutine;
         coroutine = StartCoroutine(EnableSurfaceMesh(surface[2]));
         yield return coroutine;
+        //StartCoroutine(Timer());
+        StartCoroutine(ItemCreate());
+
         coroutine = StartCoroutine(GameLoop());
         yield return coroutine;
-        GameManager.I.HighScore = currentScore;
+
+        //     GameManager.I.HighScore = currentScore;
+        resultText.text = currentScore.ToString();
+        //audioSource.PlayOneShot(joy);
+        coroutine = StartCoroutine(ScaleChange(result, new Vector3(1,1,1), 0.5f));
+        yield return coroutine;
+        coroutine = StartCoroutine(TouchWait());
+        yield return coroutine;
+        yield return new WaitForSeconds(0.3f);
+
+        yield return coroutine;
+        SceneManager.LoadSceneAsync(sceneName);
     }
     #endregion
 
+    private void OnEnable()
+    {
+        Init();
+        StopAllCoroutines();
+    }
     private void Init()
     {
         Physics.gravity = new Vector3(0, gravity, 0);
+        time = 100;
+        currentScore = 0;
+        IsFinished = false;
     }
     public static void AddScore(int score)
     {
         currentScore += score;
+    }
+    /*
+    private IEnumerator Timer()
+    {
+        while (0 < time)
+        {
+            time--;
+            yield return new WaitForSeconds(1);
+        }
+        IsFinished = true;
+    }
+    */
+    private IEnumerator ItemCreate()
+    {
+        while (!IsFinished)
+        {
+            Instantiate(item, new Vector3(7, Random.Range(0, 3), 6), Quaternion.identity);
+            yield return new WaitForSeconds(Random.Range(1, 5));
+        }
+    }
+    private IEnumerator TouchWait()
+    {
+        bool flag = false;
+        while (!flag)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                flag = true;
+            }
+
+            yield return null;
+        }
+    }
+    private IEnumerator ScaleChange(GameObject item, Vector3 destination, float speed)
+    {
+        bool flag = false;
+        while (!flag)
+        {
+            if (Vector3.Distance(item.transform.localScale, destination) < 0.01f)
+            {
+                flag = true;
+            }
+            float curvePos = animationCurve.Evaluate(speed);
+            item.transform.localScale = Vector3.Lerp(item.transform.localScale, destination, curvePos);
+            yield return null;
+        }
     }
     private IEnumerator MoveEnemy()
     {
@@ -97,11 +185,12 @@ public class InGameManager : MonoBehaviour
     {
         while (!IsFinished)
         {
+            scoreText.text = currentScore.ToString();
+            timeText.text = time.ToString();
             if (player.transform.localPosition.x < -4)
             {
                 Debug.Log("finish");
                 isFinished = true;
-                player.GetComponent<Animator>().SetTrigger("Down");
             }
             yield return null;
         }

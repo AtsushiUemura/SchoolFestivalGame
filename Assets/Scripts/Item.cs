@@ -29,6 +29,7 @@ public class Item : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+          
             Destroy(gameObject);
         }
     }

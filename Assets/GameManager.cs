@@ -38,7 +38,10 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
 	}
     #endregion
 
@@ -51,4 +54,5 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
         BGMAudioSource.clip = audioClip;
         BGMAudioSource.Play();
     }
+
 }

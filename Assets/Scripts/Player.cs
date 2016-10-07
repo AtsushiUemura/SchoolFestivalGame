@@ -7,12 +7,10 @@ public class Player : MonoBehaviour
     private Rigidbody rig;
     [SerializeField]
     private float jumpPower;
-    private int jumpCount;
+    private bool isJumped;
     private bool isDead;
     [SerializeField]
     private float speedUpRate;
-    [SerializeField]
-    private float speedUpSpan;
     [SerializeField]
     private Animator animator;
 
@@ -30,18 +28,9 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            /*
-            if (jumpCount == 1)
+            if (!isJumped)
             {
-                jumpCount++;
-                rig.AddForce(Vector3.up * jumpPower * 0.5f, ForceMode.Force);
-                animator.SetTrigger("Jump");
-
-            }
-            */
-            if (jumpCount == 0)
-            {
-                jumpCount++;
+                isJumped = true;
                 rig.AddForce(Vector3.up * jumpPower);
                 animator.SetTrigger("Jump");
             }
@@ -49,22 +38,21 @@ public class Player : MonoBehaviour
     }
     private void SpeedUp()
     {
-        transform.localPosition += new Vector3(speedUpRate, 0, 0);
+        if (transform.localPosition.x < 1)
+        {
+            transform.localPosition += new Vector3(speedUpRate, 0, 0);
+        }
     }
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Road"))
         {
-            jumpCount = 0;
+            isJumped = false;
         }
         if (other.gameObject.CompareTag("Box"))
         {
-            jumpCount = 0;
-            rig.AddForce(new Vector3(1, 1, 0) * 10);
-        }
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            rig.AddForce(Vector3.left * 300);
+            isJumped = false;
+            rig.AddForce(new Vector3(-1, 0, 0) * 50);
         }
     }
 

@@ -1,19 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
-using DG.Tweening;
 
 public class Arrow : MonoBehaviour
 {
 
-    // Use this for initialization
-    void Start()
-    {
-        transform.DOLocalRotate(new Vector3(0, 0, 30), 3).SetLoops(10, LoopType.Yoyo);
-    }
+    [SerializeField]
+    private GameObject player;
 
-    // Update is called once per frame
     void Update()
     {
-       
+        transform.localPosition = new Vector3(player.transform.localPosition.x, -2.7f, 4.9f);
     }
 }

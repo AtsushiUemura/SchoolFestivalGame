@@ -4,6 +4,7 @@ using System.Collections;
 public class Box : MonoBehaviour
 {
 
+    public float speed;
     private void OnBecameInvisible()
     {
         Destroy(gameObject);
@@ -13,7 +14,7 @@ public class Box : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Road"))
         {
-            transform.localPosition += new Vector3(-1, 0, 0) * 0.1f;
+            transform.localPosition += new Vector3(-1, 0, 0) * speed;
         }
         if (other.gameObject.CompareTag("Player"))
         {

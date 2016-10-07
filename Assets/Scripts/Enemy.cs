@@ -1,51 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
-using DG.Tweening;
 
 public class Enemy : MonoBehaviour
 {
-    private bool isDead;
-    [SerializeField]
-    private Rigidbody rig;
     [SerializeField]
     private GameObject item;
 
-    // Use this for initialization
-    void Start()
+    IEnumerator Start()
     {
-        StartCoroutine(Jump());
-        StartCoroutine(ItemCreate());
-        StartCoroutine(Effect());
+        Coroutine coroutine = StartCoroutine(Wait());
+        yield return coroutine;
+        coroutine = StartCoroutine(ItemCreate());
+        yield return coroutine;
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator Wait()
     {
-
-    }
-    private IEnumerator Effect()
-    {
-        while (!isDead)
-        {
-            
-            yield return new WaitForSeconds(3);
-        }
-    }
-    private IEnumerator Jump()
-    {
-        while (!isDead)
-        {
-            rig.AddForce(new Vector2(0, 1) * 400);
-            yield return new WaitForSeconds(1);
-        }
+        yield return new WaitForSeconds(5);
     }
     private IEnumerator ItemCreate()
     {
-        while (!isDead)
+        while (!InGameManager.IsFinished)
         {
             GameObject clone = Instantiate(item, transform.position, Quaternion.identity) as GameObject;
-            clone.GetComponent<Rigidbody>().AddForce(new Vector2(-0.5f, Random.Range(1, 5)) * 300);
-            yield return new WaitForSeconds(Random.Range(1, 3));
+            clone.GetComponent<Rigidbody>().AddForce(new Vector2(-100, Random.Range(1, 6) * 300));
+            yield return new WaitForSeconds(Random.Range(5, 10) * 0.1f);
         }
     }
 

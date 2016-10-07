@@ -29,7 +29,6 @@ public class Item : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(GameManager.I.AddScore(1));
             Destroy(gameObject);
         }
     }

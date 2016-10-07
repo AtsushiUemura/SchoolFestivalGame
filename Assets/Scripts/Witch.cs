@@ -37,9 +37,8 @@ public class Witch : MonoBehaviour
         while (count < 5)
         {
             count++;
-            GameObject clone = Instantiate(item, transform.position, Quaternion.identity) as GameObject;
-            clone.GetComponent<Rigidbody>().AddForce(new Vector2(-1, 2) * 100);
-            yield return new WaitForSeconds(Random.Range(5, 10) * 0.1f);
+            Instantiate(item, transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(Random.Range(1, 3));
         }
         yield return new WaitForSeconds(1);
     }

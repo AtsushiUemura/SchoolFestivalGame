@@ -24,16 +24,22 @@ desktop: 2736x1824 60Hz; virtual: 2736x1824 at 0,0
 XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.788101 ms
+UnloadTime: 0.708922 ms
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 2108 -> priority: 1 
+  Thread -> id: 124c -> priority: 1 
 Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 10.703991 ms
+UnloadTime: 12.168195 ms
 
 Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 909.
-Total: 0.380717 ms (FindLiveObjects: 0.047179 ms CreateObjectMapping: 0.022564 ms MarkObjects: 0.298666 ms  DeleteObjects: 0.011897 ms)
+Total: 0.424204 ms (FindLiveObjects: 0.052102 ms CreateObjectMapping: 0.025025 ms MarkObjects: 0.334768 ms  DeleteObjects: 0.011897 ms)
 
 finish
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 6.257225 ms
+
+Unloading 113 unused Assets to reduce memory usage. Loaded Objects now: 249.
+Total: 3.642253 ms (FindLiveObjects: 0.041435 ms CreateObjectMapping: 0.031999 ms MarkObjects: 0.303589 ms  DeleteObjects: 3.264817 ms)
 

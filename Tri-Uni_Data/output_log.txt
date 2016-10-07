@@ -1,0 +1,39 @@
+Initialize engine version: 5.4.1f1 (649f48bbbf0f)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: Intel(R) HD Graphics 520 (ID=0x1916)
+    Vendor:   Intel
+    VRAM:     2111 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\me\Desktop\SchoolFestivalGame\Tri-Uni_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\me\Desktop\SchoolFestivalGame\Tri-Uni_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\me\Desktop\SchoolFestivalGame\Tri-Uni_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\me\Desktop\SchoolFestivalGame\Tri-Uni_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\me\Desktop\SchoolFestivalGame\Tri-Uni_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\me\Desktop\SchoolFestivalGame\Tri-Uni_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\me\Desktop\SchoolFestivalGame\Tri-Uni_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\me\Desktop\SchoolFestivalGame\Tri-Uni_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\me\Desktop\SchoolFestivalGame\Tri-Uni_Data\Managed\DOTween.dll (this message is harmless)
+Loading C:\Users\me\Desktop\SchoolFestivalGame\Tri-Uni_Data\Managed\DOTween.dll into Unity Child Domain
+- Completed reload, in  0.073 seconds
+Platform assembly: C:\Users\me\Desktop\SchoolFestivalGame\Tri-Uni_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\me\Desktop\SchoolFestivalGame\Tri-Uni_Data\Managed\System.dll (this message is harmless)
+desktop: 2736x1824 60Hz; virtual: 2736x1824 at 0,0
+<RI> Initializing input.
+XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.788101 ms
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 2108 -> priority: 1 
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 10.703991 ms
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 909.
+Total: 0.380717 ms (FindLiveObjects: 0.047179 ms CreateObjectMapping: 0.022564 ms MarkObjects: 0.298666 ms  DeleteObjects: 0.011897 ms)
+
+finish
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+

@@ -10,6 +10,8 @@ public class Wall : MonoBehaviour
     [SerializeField]
     private float speedRate;
     [SerializeField]
+    private float posX;
+    [SerializeField]
     private Vector3 pos;
     [SerializeField]
     private float speedUpSpan;
@@ -21,14 +23,14 @@ public class Wall : MonoBehaviour
 
     private void Move()
     {
+        if (transform.localPosition.x < posX)
+        {
+            transform.localPosition = pos;
+        }
         if (currentSpeed < maxSpeed)
         {
             currentSpeed += speedRate;
         }
         transform.localPosition += new Vector3(-currentSpeed, 0, 0);
-    }
-    private void OnBecameInvisible()
-    {
-        transform.localPosition = pos;
     }
 }
